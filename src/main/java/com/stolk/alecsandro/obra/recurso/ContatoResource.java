@@ -1,6 +1,6 @@
 package com.stolk.alecsandro.obra.recurso;
 
-import com.stolk.alecsandro.obra.banco.ContatoDao;
+import com.stolk.alecsandro.obra.banco.Dao;
 import com.stolk.alecsandro.obra.modelo.Contato;
 import com.stolk.alecsandro.obra.transacao.Transacional;
 
@@ -25,7 +25,7 @@ public class ContatoResource implements Serializable {
     Contato contato = new Contato();
 
     @Inject
-    private ContatoDao dao;
+    private Dao<Contato, Long> dao;
 
     @GET
     public Response get() {
@@ -38,6 +38,13 @@ public class ContatoResource implements Serializable {
     public Response get(@PathParam("id") Long id) {
         Contato contato = dao.buscar(id);
         return Response.ok(contato).build();
+    }
+
+    @GET
+    @Path("quantidade")
+    public Response getQuantidade() {
+        Long quantidade = dao.buscarQuantidade();
+        return Response.ok(quantidade).build();
     }
 
     @POST

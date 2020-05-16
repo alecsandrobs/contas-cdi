@@ -1,6 +1,6 @@
 package com.stolk.alecsandro.obra.recurso;
 
-import com.stolk.alecsandro.obra.banco.FornecedorDao;
+import com.stolk.alecsandro.obra.banco.Dao;
 import com.stolk.alecsandro.obra.modelo.Conta;
 import com.stolk.alecsandro.obra.modelo.Contato;
 import com.stolk.alecsandro.obra.modelo.Fornecedor;
@@ -27,7 +27,7 @@ public class FornecedorResource implements Serializable {
     Fornecedor fornecedor = new Fornecedor();
 
     @Inject
-    FornecedorDao dao;
+    private Dao<Fornecedor, Long> dao;
 
     @GET
     public Response get() {
@@ -40,6 +40,13 @@ public class FornecedorResource implements Serializable {
     public Response get(@PathParam("id") Long id) {
         Fornecedor fornecedor = dao.buscar(id);
         return Response.ok(fornecedor).build();
+    }
+
+    @GET
+    @Path("quantidade")
+    public Response getQuantidade() {
+        Long quantidade = dao.buscarQuantidade();
+        return Response.ok(quantidade).build();
     }
 
     @POST
