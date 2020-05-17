@@ -4,8 +4,8 @@ import com.stolk.alecsandro.obra.banco.Dao;
 import com.stolk.alecsandro.obra.modelo.Conta;
 import com.stolk.alecsandro.obra.transacao.Transacional;
 
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.io.Serializable;
@@ -14,7 +14,7 @@ import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Named
+@Model
 @Path("contas")
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
@@ -65,8 +65,8 @@ public class ContaResource implements Serializable {
     @Transacional
     @Path("{id}")
     public Response put(@PathParam("id") Long id, Conta conta) {
-        Conta contaBusca = this.dao.buscar(id);
-        conta.setId(contaBusca.getId());
+        this.conta = this.dao.buscar(id);
+        conta.setId(this.conta.getId());
         this.dao.editar(conta);
         return Response.ok(URI.create(String.format("/contas/%s", conta.getId()))).build();
     }
@@ -74,9 +74,9 @@ public class ContaResource implements Serializable {
     @DELETE
     @Transacional
     public Response delete(Conta conta) {
-        Conta contaRemover = this.dao.buscar(conta.getId());
-        if (contaRemover != null) {
-            this.dao.excluir(contaRemover);
+        this.conta = this.dao.buscar(conta.getId());
+        if (this.conta != null) {
+            this.dao.excluir(this.conta);
         }
         return Response.noContent().build();
     }
@@ -85,9 +85,9 @@ public class ContaResource implements Serializable {
     @Transacional
     @Path("{id}")
     public Response delete(@PathParam("id") Long id) {
-        Conta conta = this.dao.buscar(id);
-        if (conta != null) {
-            this.dao.excluir(conta);
+        this.conta = this.dao.buscar(id);
+        if (this.conta != null) {
+            this.dao.excluir(this.conta);
         }
         return Response.noContent().build();
     }

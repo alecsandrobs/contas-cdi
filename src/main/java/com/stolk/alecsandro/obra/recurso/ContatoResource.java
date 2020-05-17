@@ -4,8 +4,8 @@ import com.stolk.alecsandro.obra.banco.Dao;
 import com.stolk.alecsandro.obra.modelo.Contato;
 import com.stolk.alecsandro.obra.transacao.Transacional;
 
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.io.Serializable;
@@ -14,7 +14,7 @@ import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Named
+@Model
 @Path("contatos")
 @Consumes(APPLICATION_JSON)
 @Produces(APPLICATION_JSON)
@@ -36,8 +36,8 @@ public class ContatoResource implements Serializable {
     @GET
     @Path("{id}")
     public Response get(@PathParam("id") Long id) {
-        Contato contato = dao.buscar(id);
-        return Response.ok(contato).build();
+        this.contato = dao.buscar(id);
+        return Response.ok(this.contato).build();
     }
 
     @GET
@@ -65,8 +65,8 @@ public class ContatoResource implements Serializable {
     @Transacional
     @Path("{id}")
     public Response put(@PathParam("id") Long id, Contato contato) {
-        Contato contatoBusca = dao.buscar(id);
-        contato.setId(contatoBusca.getId());
+        this.contato = dao.buscar(id);
+        contato.setId(this.contato.getId());
         dao.editar(contato);
         return Response.ok(URI.create(String.format("/contatos/%s", contato.getId()))).build();
     }
@@ -74,9 +74,9 @@ public class ContatoResource implements Serializable {
     @DELETE
     @Transacional
     public Response delete(Contato contato) {
-        Contato contatoRemover = dao.buscar(contato.getId());
-        if (contatoRemover != null) {
-            dao.excluir(contatoRemover);
+        this.contato = dao.buscar(contato.getId());
+        if (this.contato != null) {
+            dao.excluir(this.contato);
         }
         return Response.noContent().build();
     }
@@ -85,9 +85,9 @@ public class ContatoResource implements Serializable {
     @Transacional
     @Path("{id}")
     public Response delete(@PathParam("id") Long id) {
-        Contato contato = dao.buscar(id);
-        if (contato != null) {
-            dao.excluir(contato);
+        this.contato = dao.buscar(id);
+        if (this.contato != null) {
+            dao.excluir(this.contato);
         }
         return Response.noContent().build();
     }

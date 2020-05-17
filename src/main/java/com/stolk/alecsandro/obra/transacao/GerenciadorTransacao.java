@@ -4,23 +4,24 @@ import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import javax.persistence.EntityManager;
 import java.io.Serializable;
+
 
 @Interceptor
 @Transacional
 public class GerenciadorTransacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private Transacionado transacionado;
 
     @Inject
-    EntityManager em;
+    public GerenciadorTransacao(Transacionado transacionado) {
+        this.transacionado = transacionado;
+    }
 
     @AroundInvoke
-    public Object executaTransacao(InvocationContext contexto) throws Exception {
-        em.getTransaction().begin();
-        Object resultado = contexto.proceed();
-        em.getTransaction().commit();
-        return resultado;
+    public Object interceptar(InvocationContext context) {
+        return transacionado.executaComTransacao(context);
     }
+
 }
