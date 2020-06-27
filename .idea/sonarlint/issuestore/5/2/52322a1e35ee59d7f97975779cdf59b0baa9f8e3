@@ -1,15 +1,7 @@
 
-f
-java:S11921"QDefine a constant instead of duplicating this literal "/fornecedores/%s" 3 times.(›ŒÃq
-T
-java:S1117)">Rename "fornecedor" which hides the field declared at line 27.(µëàİ
-T
-java:S1117S">Rename "fornecedor" which hides the field declared at line 27.(µëàİ
-Y
-java:S1117^">Rename "fornecedor" which hides the field declared at line 27.(Á‚æÂıÿÿÿÿ
-Y
-java:S1117g">Rename "fornecedor" which hides the field declared at line 27.(Á‚æÂıÿÿÿÿ
-Y
-java:S1117p">Rename "fornecedor" which hides the field declared at line 27.(Á‚æÂıÿÿÿÿ
-Y
-java:S1117y">Rename "fornecedor" which hides the field declared at line 27.(Á‚æÂıÿÿÿÿ
+Z
+java:S1117@">Rename "fornecedor" which hides the field declared at line 28.(ª•28·’ò¶¤.
+N
+java:S1948",Make "fornecedor" transient or serializable.(Â÷„´ùÿÿÿÿ8©Î´û¡.
+m
+java:S11929"QDefine a constant instead of duplicating this literal "/fornecedores/%s" 3 times.(›ŒÃq8©Î´û¡.

@@ -1,7 +1,7 @@
 
-h
-java:S1192/"MDefine a constant instead of duplicating this literal "/contatos/%s" 3 times.(¦àÖ³şÿÿÿÿ
-V
-java:S1117'";Rename "contato" which hides the field declared at line 25.(¤ÿõÍûÿÿÿÿ
-V
-java:S1117Q";Rename "contato" which hides the field declared at line 25.(¤ÿõÍûÿÿÿÿ
+F
+java:S1948")Make "contato" transient or serializable.(ÓëÜ³8ä§ğ¶¤.
+o
+java:S11927"MDefine a constant instead of duplicating this literal "/contatos/%s" 3 times.(¦àÖ³şÿÿÿÿ8ä§ğ¶¤.
+X
+java:S1117>";Rename "contato" which hides the field declared at line 26.(ÂÎŒ“8ìÕ÷¶¤.

@@ -32,7 +32,7 @@ public class Dao<E, I> implements Serializable {
     }
 
     public void excluir(E entidade) {
-        em.remove(em.merge(entidade));
+        em.remove(entidade);
     }
 
     public List<E> buscar() {

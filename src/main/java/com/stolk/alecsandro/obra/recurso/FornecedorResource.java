@@ -15,6 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.Response.Status.CREATED;
 
 @Model
 @Path("fornecedores")
@@ -54,6 +55,14 @@ public class FornecedorResource implements Serializable {
     public Response post(Fornecedor fornecedor) {
         dao.cadastrar(fornecedor);
         return Response.created(URI.create(String.format("/fornecedores/%s", fornecedor.getId()))).build();
+    }
+
+    @POST
+    @Path("lista")
+    @Transacional
+    public Response posts(List<Fornecedor> fornecedores) {
+        fornecedores.stream().forEach(fornecedor -> this.dao.cadastrar(fornecedor));
+        return Response.status(CREATED).build();
     }
 
     @PUT

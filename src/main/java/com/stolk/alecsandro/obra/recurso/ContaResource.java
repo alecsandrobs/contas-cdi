@@ -13,6 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.Response.Status.CREATED;
 
 @Model
 @Path("contas")
@@ -52,6 +53,14 @@ public class ContaResource implements Serializable {
     public Response post(Conta conta) {
         this.dao.cadastrar(conta);
         return Response.created(URI.create(String.format("/contas/%s", conta.getId()))).build();
+    }
+
+    @POST
+    @Path("lista")
+    @Transacional
+    public Response posts(List<Conta> contas) {
+        contas.stream().forEach(conta -> this.dao.cadastrar(conta));
+        return Response.status(CREATED).build();
     }
 
     @PUT

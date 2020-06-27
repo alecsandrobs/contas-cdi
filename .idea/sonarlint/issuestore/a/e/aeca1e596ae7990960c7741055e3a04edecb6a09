@@ -1,9 +1,17 @@
 
-s
-java:S1488'"]Immediately return this expression instead of assigning it to the temporary variable "lista".(†Ó¹£
-w
-java:S1488,"aImmediately return this expression instead of assigning it to the temporary variable "instancia".(Şê¨¥
-s
-java:S1488="]Immediately return this expression instead of assigning it to the temporary variable "lista".(šº£–
-?
-java:S1948"$Make "em" transient or serializable.(‘æ¿Úúÿÿÿÿ
+Q
+java:S3740@"/Provide the parametrized type for this generic.(Åù»Üúÿÿÿÿ8¡ø€û¡.
+
+java:S1488E"]Immediately return this expression instead of assigning it to the temporary variable "valor".(©Şüšùÿÿÿÿ8»Í’û¡.
+{
+java:S14886"^Immediately return this expression instead of assigning it to the temporary variable "result".(¯”„8«Ìëú¡.
+~
+java:S1488."aImmediately return this expression instead of assigning it to the temporary variable "instancia".(Şê¨¥8«Ìëú¡.
+L
+java:S3740?"/Provide the parametrized type for this generic.(Èûò«8ãÛÿú¡.
+z
+java:S1488)"]Immediately return this expression instead of assigning it to the temporary variable "lista".(†Ó¹£8«Ìëú¡.
+
+java:S1488L"]Immediately return this expression instead of assigning it to the temporary variable "lista".(¼ş‘Šúÿÿÿÿ8«Ìëú¡.
+F
+java:S1948"$Make "em" transient or serializable.(‘æ¿Úúÿÿÿÿ8«Ìëú¡.

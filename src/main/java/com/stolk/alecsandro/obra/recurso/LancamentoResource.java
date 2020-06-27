@@ -1,6 +1,7 @@
 package com.stolk.alecsandro.obra.recurso;
 
 import com.stolk.alecsandro.obra.banco.Dao;
+import com.stolk.alecsandro.obra.banco.LancamentoDao;
 import com.stolk.alecsandro.obra.modelo.Lancamento;
 import com.stolk.alecsandro.obra.transacao.Transacional;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import static com.stolk.alecsandro.obra.modelo.Lancamento.TipoLancamento.PAGAMENTO;
 import static com.stolk.alecsandro.obra.modelo.Lancamento.TipoLancamento.RECEBIMENTO;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.Response.Status.CREATED;
 
 @Model
 @Path("lancamentos")
@@ -28,6 +30,9 @@ public class LancamentoResource implements Serializable {
 
     @Inject
     private Dao<Lancamento, Long> dao;
+
+    @Inject
+    private LancamentoDao lancamentoDao;
 
     @GET
     public Response get() {
@@ -77,11 +82,33 @@ public class LancamentoResource implements Serializable {
         return Response.ok(total).build();
     }
 
+    @GET
+    @Path("somar-pagamentos")
+    public Response getSomaPagamentos() {
+        Double total = lancamentoDao.somar(PAGAMENTO);
+        return Response.ok(total).build();
+    }
+
+    @GET
+    @Path("somar-recebimentos")
+    public Response getSomaRecebimentos() {
+        Double total = lancamentoDao.somar(RECEBIMENTO);
+        return Response.ok(total).build();
+    }
+
     @POST
     @Transacional
     public Response post(Lancamento lancamento) {
         dao.cadastrar(lancamento);
         return Response.created(URI.create(String.format("/lancamentos/%s", lancamento.getId()))).build();
+    }
+
+    @POST
+    @Path("lista")
+    @Transacional
+    public Response posts(List<Lancamento> lancamentos) {
+        lancamentos.stream().forEach(lancamento -> this.dao.cadastrar(lancamento));
+        return Response.status(CREATED).build();
     }
 
     @PUT
